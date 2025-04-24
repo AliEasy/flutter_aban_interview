@@ -37,9 +37,9 @@ class CryptocurrencyItemWidget extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 text: item.symbol,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.labelLarge,
                 children: [
-                  TextSpan(text: ' | ${item.name}'),
+                  TextSpan(text: ' | ${item.name}', style: Theme.of(context).textTheme.labelSmall),
                 ],
               ),
             ),
