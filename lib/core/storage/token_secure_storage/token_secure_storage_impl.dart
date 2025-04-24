@@ -13,4 +13,9 @@ class TokenSecureStorageImpl implements TokenSecureStorage {
   Future<void> saveToken(String token) async {
     await _flutterSecureStorage.write(key: tokenSecureStorageKey, value: token);
   }
+
+  @override
+  Future<String?> readToken() async {
+    return await _flutterSecureStorage.read(key: tokenSecureStorageKey);
+  }
 }
