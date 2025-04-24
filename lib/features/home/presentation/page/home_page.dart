@@ -1,10 +1,99 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_aban_interview/core/di/base/di_setup.dart';
+import 'package:flutter_aban_interview/features/home/presentation/manager/list/cryptocurrency_list_cubit.dart';
+import 'package:flutter_aban_interview/features/home/presentation/widget/cryptocurrency_item_widget.dart';
+import 'package:flutter_aban_interview/generated/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return BlocProvider(
+      create: (context) => getIt<CryptocurrencyListCubit>(),
+      child: BlocListener<CryptocurrencyListCubit, CryptocurrencyListState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            failure: (message, statusCode) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(content: Text(message ?? S.current.unknown_error)),
+                );
+            },
+          );
+        },
+        child: Builder(
+          builder: (context) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(S.current.aban_interview),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      //push
+                    },
+                    icon: const Icon(Icons.person),
+                  ),
+                ],
+              ),
+              body: BlocBuilder<CryptocurrencyListCubit, CryptocurrencyListState>(
+                builder: (context, state) {
+                  return state.whenOrNull(
+                        loading: () {
+                          return const Center(child: CircularProgressIndicator());
+                        },
+                        success: (list) {
+                          if (list.isNotEmpty) {
+                            return ListView.separated(
+                                itemBuilder: (context, index) {
+                                  final item = list[index];
+                                  return CryptocurrencyItemWidget(
+                                    item: item,
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return const SizedBox(
+                                    height: 8,
+                                  );
+                                },
+                                itemCount: list.length);
+                          } else {
+                            return Center(
+                              child: Text(S.current.no_items_found_to_display),
+                            );
+                          }
+                        },
+                        failure: (message, statusCode) {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(message ?? S.current.unknown_error),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                OutlinedButton(
+                                  onPressed: () {
+                                    context
+                                        .read<CryptocurrencyListCubit>()
+                                        .getList();
+                                  },
+                                  child: Text(S.current.retry),
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                      ) ??
+                      const SizedBox();
+                },
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
