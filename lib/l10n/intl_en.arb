@@ -16,5 +16,6 @@
   "edit_phone_number_desc": "Enter Your new phone number below and tap submit in order to edit it.",
   "submit": "Submit",
   "cancel": "Cancel",
+  "phone_number_is_not_valid": "Phone number is not valid",
   "end_of_file": ""
 }
