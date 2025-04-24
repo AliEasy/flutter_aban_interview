@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_aban_interview/core/di/base/di_setup.dart';
+import 'package:flutter_aban_interview/features/home/presentation/manager/favorite/favorite_cryptocurrency_cubit.dart';
 import 'package:flutter_aban_interview/features/home/presentation/manager/list/cryptocurrency_list_cubit.dart';
 import 'package:flutter_aban_interview/features/home/presentation/widget/cryptocurrency_item_widget.dart';
 import 'package:flutter_aban_interview/generated/l10n.dart';
@@ -49,8 +50,36 @@ class HomePage extends StatelessWidget {
                             return ListView.separated(
                                 itemBuilder: (context, index) {
                                   final item = list[index];
-                                  return CryptocurrencyItemWidget(
-                                    item: item,
+                                  return BlocProvider(
+                                    create: (context) =>
+                                        getIt<FavoriteCryptocurrencyCubit>(),
+                                    child: BlocListener<FavoriteCryptocurrencyCubit,
+                                        FavoriteCryptocurrencyState>(
+                                      listener: (context, state) {
+                                        state.whenOrNull(
+                                          failure: (message, statusCode) {
+                                            ScaffoldMessenger.of(context)
+                                              ..hideCurrentSnackBar()
+                                              ..showSnackBar(
+                                                SnackBar(
+                                                  content: Text(message ??
+                                                      S.current.unknown_error),
+                                                ),
+                                              );
+                                          },
+                                          success: () {
+                                            context
+                                                .read<CryptocurrencyListCubit>()
+                                                .toggleFavorite(item.id);
+                                          },
+                                        );
+                                      },
+                                      child: Builder(builder: (context) {
+                                        return CryptocurrencyItemWidget(
+                                          item: item,
+                                        );
+                                      }),
+                                    ),
                                   );
                                 },
                                 separatorBuilder: (context, index) {
