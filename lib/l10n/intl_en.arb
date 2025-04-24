@@ -4,6 +4,7 @@
   "email_is_not_valid": "Email is not valid",
   "password": "Password",
   "password_is_not_valid": "Password is not valid",
-  "login":  "Login",
+  "login": "Login",
+  "unknown_error": "unknown error occurred",
   "end_of_file": ""
 }
