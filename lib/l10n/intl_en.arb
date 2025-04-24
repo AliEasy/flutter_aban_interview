@@ -9,5 +9,12 @@
   "aban_interview": "Aban Interview",
   "no_items_found_to_display": "No items found to display",
   "retry": "Retry",
+  "profile": "Profile",
+  "name": "Name",
+  "phone_number": "Phone number",
+  "edit_phone_number": "Edit phone number",
+  "edit_phone_number_desc": "Enter Your new phone number below and tap submit in order to edit it.",
+  "submit": "Submit",
+  "cancel": "Cancel",
   "end_of_file": ""
 }
