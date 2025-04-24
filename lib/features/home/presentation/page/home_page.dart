@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_aban_interview/core/di/base/di_setup.dart';
+import 'package:flutter_aban_interview/core/theme/management/theme_management_cubit.dart';
 import 'package:flutter_aban_interview/features/home/presentation/manager/favorite/favorite_cryptocurrency_cubit.dart';
 import 'package:flutter_aban_interview/features/home/presentation/manager/list/cryptocurrency_list_cubit.dart';
 import 'package:flutter_aban_interview/features/home/presentation/widget/cryptocurrency_item_widget.dart';
@@ -42,6 +43,19 @@ class HomePage extends StatelessWidget {
                     icon: const Icon(Icons.person),
                   ),
                 ],
+                leading: BlocBuilder<ThemeManagementCubit, ThemeMode>(
+                  builder: (context, state) {
+                    return IconButton(
+                      onPressed: () {
+                        context.read<ThemeManagementCubit>().toggleTheme();
+                      },
+                      icon: state == ThemeMode.dark
+                          ? const Icon(Icons.dark_mode_rounded)
+                          : const Icon(Icons.light_mode_rounded),
+                    );
+                  },
+                ),
+                automaticallyImplyLeading: false,
               ),
               body: BlocBuilder<CryptocurrencyListCubit, CryptocurrencyListState>(
                 builder: (context, state) {
