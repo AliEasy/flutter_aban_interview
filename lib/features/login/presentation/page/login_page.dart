@@ -47,108 +47,110 @@ class _LoginPageState extends State<LoginPage> {
             },
           );
         },
-        child: Builder(builder: (context) {
-          return Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              controller: _emailController,
-                              decoration: InputDecoration(
-                                labelText: S.current.email,
-                                hintText: S.current.email,
+        child: Builder(
+          builder: (context) {
+            return Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                controller: _emailController,
+                                decoration: InputDecoration(
+                                  labelText: S.current.email,
+                                  hintText: S.current.email,
+                                ),
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.next,
+                                validator: (value) {
+                                  return context
+                                      .read<LoginFormValidatorCubit>()
+                                      .validateEmail(value ?? '');
+                                },
                               ),
-                              autovalidateMode: AutovalidateMode.onUserInteraction,
-                              keyboardType: TextInputType.emailAddress,
-                              textInputAction: TextInputAction.next,
-                              validator: (value) {
-                                return context
-                                    .read<LoginFormValidatorCubit>()
-                                    .validateEmail(value ?? '');
-                              },
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
-                              controller: _passwordController,
-                              decoration: InputDecoration(
-                                labelText: S.current.password,
-                                hintText: S.current.password,
+                              const SizedBox(
+                                height: 10,
                               ),
-                              obscureText: true,
-                              keyboardType: TextInputType.text,
-                              autovalidateMode: AutovalidateMode.onUserInteraction,
-                              textInputAction: TextInputAction.done,
-                              onFieldSubmitted: (value) {
-                                _onLoginTap(context);
-                              },
-                              validator: (value) {
-                                return context
-                                    .read<LoginFormValidatorCubit>()
-                                    .validatePassword(value ?? '');
-                              },
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            BlocBuilder<LoginFormValidatorCubit,
-                                LoginFormValidatorState>(
-                              builder: (context, state) {
-                                return state.whenOrNull(
-                                      valid: () {
-                                        return BlocBuilder<LoginCubit, LoginState>(
-                                          builder: (context, state) {
-                                            return state.whenOrNull(
-                                                  loading: () {
-                                                    return const ElevatedButton(
-                                                      onPressed: null,
-                                                      child: SizedBox(
-                                                          height: 20,
-                                                          width: 20,
-                                                          child:
-                                                              CircularProgressIndicator()),
-                                                    );
-                                                  },
-                                                ) ??
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    _onLoginTap(context);
-                                                  },
-                                                  child: Text(S.current.login),
-                                                );
-                                          },
-                                        );
-                                      },
-                                    ) ??
-                                    ElevatedButton(
-                                      onPressed: null,
-                                      child: Text(S.current.login),
-                                    );
-                              },
-                            ),
-                          ],
+                              TextFormField(
+                                controller: _passwordController,
+                                decoration: InputDecoration(
+                                  labelText: S.current.password,
+                                  hintText: S.current.password,
+                                ),
+                                obscureText: true,
+                                keyboardType: TextInputType.text,
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                textInputAction: TextInputAction.done,
+                                onFieldSubmitted: (value) {
+                                  _onLoginTap(context);
+                                },
+                                validator: (value) {
+                                  return context
+                                      .read<LoginFormValidatorCubit>()
+                                      .validatePassword(value ?? '');
+                                },
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              BlocBuilder<LoginFormValidatorCubit,
+                                  LoginFormValidatorState>(
+                                builder: (context, state) {
+                                  return state.whenOrNull(
+                                        valid: () {
+                                          return BlocBuilder<LoginCubit, LoginState>(
+                                            builder: (context, state) {
+                                              return state.whenOrNull(
+                                                    loading: () {
+                                                      return const ElevatedButton(
+                                                        onPressed: null,
+                                                        child: SizedBox(
+                                                            height: 20,
+                                                            width: 20,
+                                                            child:
+                                                                CircularProgressIndicator()),
+                                                      );
+                                                    },
+                                                  ) ??
+                                                  ElevatedButton(
+                                                    onPressed: () {
+                                                      _onLoginTap(context);
+                                                    },
+                                                    child: Text(S.current.login),
+                                                  );
+                                            },
+                                          );
+                                        },
+                                      ) ??
+                                      ElevatedButton(
+                                        onPressed: null,
+                                        child: Text(S.current.login),
+                                      );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        }),
+            );
+          },
+        ),
       ),
     );
   }
