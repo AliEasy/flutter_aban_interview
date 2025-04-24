@@ -22,11 +22,17 @@ class FlutterAbanInterview extends StatelessWidget {
         brightness: Brightness.light,
         useMaterial3: true,
         colorSchemeSeed: const Color(0xFF4C6FFF),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+        ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         useMaterial3: true,
         colorSchemeSeed: const Color(0xFFFF7847),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+        ),
       ),
       home: const LoginPage(),
     );
