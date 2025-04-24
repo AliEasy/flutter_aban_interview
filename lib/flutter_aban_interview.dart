@@ -25,6 +25,9 @@ class FlutterAbanInterview extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           centerTitle: true,
         ),
+        dialogTheme: const DialogTheme(
+          titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
@@ -32,6 +35,9 @@ class FlutterAbanInterview extends StatelessWidget {
         colorSchemeSeed: const Color(0xFFFF7847),
         appBarTheme: const AppBarTheme(
           centerTitle: true,
+        ),
+        dialogTheme: const DialogTheme(
+          titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
       home: const LoginPage(),
