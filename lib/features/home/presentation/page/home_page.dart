@@ -3,6 +3,7 @@ import 'package:flutter_aban_interview/core/di/base/di_setup.dart';
 import 'package:flutter_aban_interview/features/home/presentation/manager/favorite/favorite_cryptocurrency_cubit.dart';
 import 'package:flutter_aban_interview/features/home/presentation/manager/list/cryptocurrency_list_cubit.dart';
 import 'package:flutter_aban_interview/features/home/presentation/widget/cryptocurrency_item_widget.dart';
+import 'package:flutter_aban_interview/features/profile/presentation/page/profile_page.dart';
 import 'package:flutter_aban_interview/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,7 +34,10 @@ class HomePage extends StatelessWidget {
                 actions: [
                   IconButton(
                     onPressed: () {
-                      //push
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ProfilePage()),
+                      );
                     },
                     icon: const Icon(Icons.person),
                   ),
