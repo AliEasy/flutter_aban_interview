@@ -17,17 +17,32 @@ class CryptocurrencyListCubit extends Cubit<CryptocurrencyListState> {
     getList();
   }
 
+  List<CryptocurrencyResponseEntity> _dataList = [];
+
   getList() async {
     emit(const CryptocurrencyListState.loading());
     final result = await _cryptocurrencyUseCase.call();
     result.whenOrNull(
       success: (data) {
-        emit(CryptocurrencyListState.success(list: data ?? []));
+        _dataList = data ?? [];
+        emit(CryptocurrencyListState.success(list: _dataList));
       },
       failure: (message, statusCode) {
         emit(CryptocurrencyListState.failure(
             message: message, statusCode: statusCode));
       },
     );
+  }
+
+  toggleFavorite(int cryptocurrencyId) {
+    _dataList = _dataList.map(
+      (e) {
+        if (e.id == cryptocurrencyId) {
+          return e.toggleFavorite();
+        }
+        return e;
+      },
+    ).toList();
+    emit(CryptocurrencyListState.success(list: _dataList));
   }
 }

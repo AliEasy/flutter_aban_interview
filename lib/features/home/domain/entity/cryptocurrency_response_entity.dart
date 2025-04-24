@@ -16,4 +16,16 @@ class CryptocurrencyResponseEntity {
     required this.iconAddress,
     required this.isFavorite,
   });
+
+  CryptocurrencyResponseEntity toggleFavorite() {
+    return CryptocurrencyResponseEntity(
+      id: id,
+      createdAt: createdAt,
+      name: name,
+      price: price,
+      symbol: symbol,
+      iconAddress: iconAddress,
+      isFavorite: !isFavorite,
+    );
+  }
 }
