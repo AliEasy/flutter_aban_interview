@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_aban_interview/core/di/base/di_setup.dart';
-import 'package:flutter_aban_interview/features/profile/presentation/manager/get_user_info/get_user_data_cubit.dart';
+import 'package:flutter_aban_interview/features/profile/presentation/manager/get_user_data/get_user_data_cubit.dart';
 import 'package:flutter_aban_interview/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
