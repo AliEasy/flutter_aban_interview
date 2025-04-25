@@ -69,13 +69,12 @@ class _PhoneNumberEditorDialogState extends State<PhoneNumberEditorDialog> {
                     controller: _phoneNumberController,
                     decoration: InputDecoration(
                       labelText: S.current.phone_number,
-                      hintText: S.current.phone_number,
-                      prefixText: '+98 ',
+                      hintText: S.current.accepted_phone_number_example,
                     ),
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
-                    maxLength: 10,
+                    maxLength: 11,
                     keyboardType: TextInputType.number,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     textInputAction: TextInputAction.done,

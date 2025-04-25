@@ -15,7 +15,7 @@ class UpdatePhoneNumberFormValidatorCubit
       : super(const UpdatePhoneNumberFormValidatorState.invalid());
 
   String? validatePhoneNumber(String phoneNumber) {
-    final isValid = RegExp(iranMobileNumberRegex).hasMatch('+98$phoneNumber');
+    final isValid = RegExp(iranMobileNumberRegex).hasMatch(phoneNumber);
     if (isValid) {
       emit(const UpdatePhoneNumberFormValidatorState.valid());
       return null;

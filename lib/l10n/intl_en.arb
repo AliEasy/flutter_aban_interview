@@ -33,5 +33,6 @@
   "api_exception_format_json": "Data parsing error – The server response format was unexpected.",
   "api_exception_internal_handler": "Internal exception handler error.",
   "api_exception_invalid_token": "InvalidTokenException - Invalid or missing token from login response.",
+  "accepted_phone_number_example": "Enter in format: 09123456789",
   "end_of_file": ""
 }
