@@ -13,9 +13,7 @@ class CryptocurrencyListCubit extends Cubit<CryptocurrencyListState> {
   final CryptocurrencyUseCase _cryptocurrencyUseCase;
 
   CryptocurrencyListCubit(this._cryptocurrencyUseCase)
-      : super(const CryptocurrencyListState.initial()) {
-    getList();
-  }
+      : super(const CryptocurrencyListState.initial());
 
   List<CryptocurrencyResponseEntity> _dataList = [];
 
