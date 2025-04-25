@@ -13,7 +13,7 @@ class ProfileUserDataSourceImpl implements ProfileUserDataSource {
   @override
   Future<UpdateUserDataResponseModel> updateUserData(
       UpdateUserDataRequestModel body) async {
-    final result = await _dio.put('user', data: body); //wrong api path
+    final result = await _dio.put('user/{user_id}', data: body); //wrong api path
     return UpdateUserDataResponseModel.fromJson(result.data);
   }
 }
