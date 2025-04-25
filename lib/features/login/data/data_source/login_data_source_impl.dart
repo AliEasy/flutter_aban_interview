@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_aban_interview/core/di/error_handler/api_exception_handler.dart';
 import 'package:flutter_aban_interview/core/storage/token_secure_storage/token_secure_storage.dart';
 import 'package:flutter_aban_interview/features/login/data/data_source/login_data_source.dart';
 import 'package:flutter_aban_interview/features/login/data/model/login_request_model.dart';
@@ -18,7 +19,7 @@ class LoginDataSourceImpl extends LoginDataSource {
     if (token.isNotEmpty) {
       _tokenSecureStorage.saveToken(token);
     } else {
-      //todo
+      throw InvalidTokenException();
     }
   }
 }
