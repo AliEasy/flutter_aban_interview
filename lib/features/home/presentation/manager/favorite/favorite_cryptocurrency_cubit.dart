@@ -26,7 +26,7 @@ class FavoriteCryptocurrencyCubit extends Cubit<FavoriteCryptocurrencyState> {
         emit(const FavoriteCryptocurrencyState.success());
       },
       failure: (message, statusCode) {
-        emit(const FavoriteCryptocurrencyState.failure());
+        emit(FavoriteCryptocurrencyState.failure(message: message));
       },
     );
   }
@@ -40,7 +40,7 @@ class FavoriteCryptocurrencyCubit extends Cubit<FavoriteCryptocurrencyState> {
         emit(const FavoriteCryptocurrencyState.success());
       },
       failure: (message, statusCode) {
-        emit(const FavoriteCryptocurrencyState.failure());
+        emit(FavoriteCryptocurrencyState.failure(message: message));
       },
     );
   }

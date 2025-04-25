@@ -14,7 +14,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<CryptocurrencyListCubit>(),
+      create: (context) {
+        final cubit = getIt<CryptocurrencyListCubit>();
+        cubit.getList();
+        return cubit;
+      },
       child: BlocListener<CryptocurrencyListCubit, CryptocurrencyListState>(
         listener: (context, state) {
           state.whenOrNull(

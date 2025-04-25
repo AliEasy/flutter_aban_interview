@@ -19,7 +19,11 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<GetUserDataCubit>(),
+      create: (context) {
+        final cubit = getIt<GetUserDataCubit>();
+        cubit.getUserData();
+        return cubit;
+      },
       child: Scaffold(
         appBar: AppBar(
           title: Text(S.current.profile),

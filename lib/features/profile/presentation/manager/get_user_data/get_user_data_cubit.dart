@@ -13,9 +13,7 @@ class GetUserDataCubit extends Cubit<GetUserDataState> {
   final GetUserDataUseCase _getUserDataUseCase;
 
   GetUserDataCubit(this._getUserDataUseCase)
-      : super(const GetUserDataState.initial()) {
-    getUserData();
-  }
+      : super(const GetUserDataState.initial());
 
   getUserData() async {
     emit(const GetUserDataState.loading());

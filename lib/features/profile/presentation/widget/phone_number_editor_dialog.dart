@@ -84,7 +84,7 @@ class _PhoneNumberEditorDialogState extends State<PhoneNumberEditorDialog> {
                     validator: (value) {
                       return context
                           .read<UpdatePhoneNumberFormValidatorCubit>()
-                          .validateEmail(value ?? '');
+                          .validatePhoneNumber(value ?? '');
                     },
                   ),
                 ],
