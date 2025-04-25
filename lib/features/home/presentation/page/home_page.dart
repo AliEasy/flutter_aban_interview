@@ -117,7 +117,7 @@ class HomePage extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(message ?? S.current.unknown_error),
+                                Text(message ?? S.current.unknown_error, textAlign: TextAlign.center),
                                 const SizedBox(
                                   height: 12,
                                 ),
