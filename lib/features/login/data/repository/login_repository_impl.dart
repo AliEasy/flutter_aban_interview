@@ -1,3 +1,4 @@
+import 'package:flutter_aban_interview/core/di/error_handler/api_exception_handler.dart';
 import 'package:flutter_aban_interview/core/model/result.dart';
 import 'package:flutter_aban_interview/features/login/data/data_source/login_data_source.dart';
 import 'package:flutter_aban_interview/features/login/domain/entity/login_request_entity.dart';
@@ -17,7 +18,7 @@ class LoginRepositoryImpl implements LoginRepository {
       await _loginDataSource.login(body.mapper());
       return const Result.success();
     } catch (e) {
-      return const Result.failure(); //todo
+      return e.toResult();
     }
   }
 }

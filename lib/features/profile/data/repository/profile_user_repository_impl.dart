@@ -1,3 +1,4 @@
+import 'package:flutter_aban_interview/core/di/error_handler/api_exception_handler.dart';
 import 'package:flutter_aban_interview/core/model/result.dart';
 import 'package:flutter_aban_interview/features/profile/data/data_source/profile_user_data_source.dart';
 import 'package:flutter_aban_interview/features/profile/domain/entity/update_user_data_request_entity.dart';
@@ -20,7 +21,7 @@ class ProfileUserRepositoryImpl implements ProfileUserRepository {
       final result = await _profileUserDataSource.updateUserData(body.mapper());
       return Result.success(data: result.mapper());
     } catch (e) {
-      return const Result.failure(); //todo
+      return e.toResult();
     }
   }
 }

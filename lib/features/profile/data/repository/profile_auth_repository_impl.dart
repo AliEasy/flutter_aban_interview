@@ -1,3 +1,4 @@
+import 'package:flutter_aban_interview/core/di/error_handler/api_exception_handler.dart';
 import 'package:flutter_aban_interview/core/model/result.dart';
 import 'package:flutter_aban_interview/features/profile/data/data_source/profile_auth_data_source.dart';
 import 'package:flutter_aban_interview/features/profile/domain/entity/user_data_response_entity.dart';
@@ -17,7 +18,7 @@ class ProfileAuthRepositoryImpl implements ProfileAuthRepository {
       final result = await _profileAuthDataSource.getUserData();
       return Result.success(data: result.mapper());
     } catch (e) {
-      return const Result.failure(); //todo
+      return e.toResult();
     }
   }
 }

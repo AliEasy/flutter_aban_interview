@@ -1,3 +1,4 @@
+import 'package:flutter_aban_interview/core/di/error_handler/api_exception_handler.dart';
 import 'package:flutter_aban_interview/core/model/result.dart';
 import 'package:flutter_aban_interview/features/home/data/data_source/favorite_cryptocurrency_data_source.dart';
 import 'package:flutter_aban_interview/features/home/domain/repository/favorite_cryptocurrency_repository.dart';
@@ -16,7 +17,7 @@ class FavoriteCryptocurrencyRepositoryImpl
       await _favoriteCryptocurrencyDataSource.addToFavorites(cryptocurrencyId);
       return const Result.success();
     } catch (e) {
-      return const Result.failure(); //todo
+      return e.toResult();
     }
   }
 
@@ -26,7 +27,7 @@ class FavoriteCryptocurrencyRepositoryImpl
       await _favoriteCryptocurrencyDataSource.deleteFromFavorites(cryptocurrencyId);
       return const Result.success();
     } catch (e) {
-      return const Result.failure(); //todo
+      return e.toResult();
     }
   }
 }
