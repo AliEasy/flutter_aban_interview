@@ -1,2 +1,0 @@
-C:/Users/Administrator/FlutterProjects/flutter_aban_interview/android/app/.cxx/Debug/5w292p3m/x86_64/CMakeFiles/edit_cache.dir
-C:/Users/Administrator/FlutterProjects/flutter_aban_interview/android/app/.cxx/Debug/5w292p3m/x86_64/CMakeFiles/rebuild_cache.dir
