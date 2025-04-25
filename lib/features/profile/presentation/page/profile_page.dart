@@ -28,7 +28,12 @@ class _ProfilePageState extends State<ProfilePage> {
           builder: (context) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-              child: BlocBuilder<GetUserDataCubit, GetUserDataState>(
+              child: BlocConsumer<GetUserDataCubit, GetUserDataState>(
+                listener: (context, state) {
+                  state.whenOrNull(success: (userData) {
+                    _phoneNumberController.text = userData?.phoneNumber ?? '';
+                  },);
+                },
                 builder: (context, state) {
                   return state.whenOrNull(
                         loading: () {
@@ -69,7 +74,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                   TextFormField(
                                     controller: _phoneNumberController,
-                                    initialValue: userData?.phoneNumber,
                                     readOnly: true,
                                     decoration: InputDecoration(
                                       labelText: S.current.phone_number,
