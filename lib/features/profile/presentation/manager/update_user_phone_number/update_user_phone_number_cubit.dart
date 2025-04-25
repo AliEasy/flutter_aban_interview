@@ -19,7 +19,7 @@ class UpdateUserPhoneNumberCubit extends Cubit<UpdateUserPhoneNumberState> {
   updatePhoneNumber(String phoneNumber) async {
     emit(const UpdateUserPhoneNumberState.loading());
     final result = await _updateUserDataUseCase
-        .call(UpdateUserDataRequestEntity(phoneNumber: '+98$phoneNumber'));
+        .call(UpdateUserDataRequestEntity(phoneNumber: phoneNumber));
     result.whenOrNull(
       success: (data) {
         emit(UpdateUserPhoneNumberState.success(data: data));
